@@ -1,0 +1,269 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" ================================
+" This is stuff I need for vim-latex
+" =================================
+filetype plugin on
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+filetype indent on
+let g:tex_flavor='latex'
+
+" This part is so that vim-latex uses pdf by default
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats = 'pdf, aux'
+" =================================
+" End vim-latex stuff
+" =================================
+
+" =================================
+" Vundle Configuration
+" =================================
+" See https://github.com/gmarik/vundle
+" set nocompatible             " Done below
+" filetype off                   " required! (no longer?)
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+
+" original repos on github
+Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'vim-scripts/sudo.vim'
+    " ^Allows sudo usage
+Bundle 'vim-scripts/haskell.vim' 
+    " ^Syntax highlighting
+Bundle 'Shougo/neocomplcache.git'
+    " ^Autocompletion - really awesome
+Bundle 'Shougo/vimproc'
+    " ^Required by ghcmod-vim
+Bundle 'ujihisa/neco-ghc' 
+    " ^Completion with NeoComplCache for haskell - requires ghc-mod
+Bundle 'majutsushi/tagbar'
+    " ^Tags, using lushtags for haskell - requires lushtags
+Bundle 'Lokaltog/vim-easymotion'
+    " ^Use \\w and \\b to move about super fast
+Bundle 'tpope/vim-fugitive'
+    " ^Use git within vim
+Bundle 'tpope/vim-surround'
+    " ^Use to change surrounding brackets/etc.
+Bundle 'tristen/vim-sparkup'
+    " ^Use for quickly making html files
+Bundle 'eagletmt/ghcmod-vim'
+    " ^Used for happy haskell programming in vim
+
+" vim-scripts repos
+Bundle 'VimRepress'
+Bundle 'python.vim'
+
+" non github repos
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+" =============================
+" End Vundle config
+" ==============================
+
+
+
+" =============================
+" An example for a vimrc file.
+" ==============================
+set nobackup
+set history=50		" keep 50 lines of command line history
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+else
+
+  set autoindent		" always set autoindenting on
+
+endif " has("autocmd")
+" ===============================
+" End sample .vimrc file
+" ==============================
+
+
+" =============================
+" My very own commands
+" ============================
+
+set directory^=$HOME/.vim_swap//   "put all swap files together in one place
+
+" Lots of these are from
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+
+" Set the text width to 72, for wrapping commments and stuff
+set textwidth=72
+" But make sure that autowrap is off:
+set formatoptions-=t
+" To wrap text, use gq
+
+" There are security expoits with modelines, so set this since I don't
+" use them
+set modelines=0
+
+" This sets tabs so that tabs expand to four spaces, instead of tabs.
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+" Set the encoding to UTF-8
+set encoding=utf-8
+
+" Make it so that at least 3 lines are above/below the cursor, whenever
+" possible, with scrolling
+set scrolloff=3
+
+" Shows the current mode at the bottom
+set showmode
+
+" Shows partial commands
+set showcmd
+
+" Allows for command-line completion with tab
+set wildmenu
+set wildmode=list:longest
+
+" Use a visual bell, instead of an audible one (woot)
+set visualbell
+
+" Highlights the line the cursor is on
+" set cursorline
+
+" Show the cursor position all the time
+set ruler
+
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Make sure there is always a status line, regardless of the number of open
+" windows
+set laststatus=2
+
+" Fix wierd things related to searching:
+"     First lines fix so normal regexing is used (not vim's)
+"     3-4 make case searching sensible
+"     5 makes so :%s/foo/bar/ acts like :%s/foo/bar/g
+"     6-8 make incremental highlighted searching
+"     9 makes '\ ' clear highlighting
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+
+" This makes it so Vim shows endlines and tabs
+" set list
+
+" This disables the arrow keys so that I do things the 'Vim way'
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" This makes j and k go up and down according to screen lines, not file lines
+" nnoremap j gj
+" nnoremap k gk
+
+" This makes it so that when focus is lost, everything gets saved
+" au FocusLost * :wa
+
+" This one makes typing 'jj' in insert mode escape back to command mode
+inoremap jj <ESC>
+
+" Set folds based on indent
+set foldmethod=indent
+" And start with nothing folded
+set foldlevel=99
+
+" This makes it so that I can see partial lines at the bottom.
+set display=lastline
+
+" This sets the color scheme at startup
+" colorscheme inkpot
+syntax enable
+" colorscheme solarized
+" set background=dark
+colorscheme slate
+
+" Display line numbers relative to the current line
+set relativenumber
+
+" ==== MultiMarkdown Usage ====
+" Map \mmd to compiling the file using multimarkdown in batch mode to html
+nnoremap <leader>mmd :!multimarkdown<space>-b<space>%<cr><cr>
+
+" ==== VimWiki Commands ======
+" This sets my wikis. Note that I only have one wiki, and I want it to be in
+" my Dropbox folder (so it can sync with Android)
+let g:vimwiki_list=[{'path': '~/Dropbox/wiki', 'path_html': '~/Dropbox/wiki/html'}]
+
+" ==== iSSH stuff ===="
+" First, this let's me change windows in vim without C-w
+nnoremap :ww :wincmd w<cr>
+
+" ===== NeoComplCache Stuff =====
+" Enable
+let g:neocomplcache_enable_at_startup = 1
+
+"===== TagBar stuff =======
+" Enable with F8
+nmap <C-W>t :TagbarToggle<CR>
+
+" Who knows
+set t_Co=256
+
+" ===========================
+" End my commands
+" ===========================

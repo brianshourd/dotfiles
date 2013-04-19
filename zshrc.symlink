@@ -1,0 +1,44 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/brian/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# Something I found online about having sudo use the user's vim config
+if [ -n "${SUDO_USER}" -a -d "/home/${SUDO_USER}/.vim" ]; then
+    alias vim="/usr/bin/vim --cmd \"set runtimepath+=/home/${SUDO_USER}/.vim\" -u /home/${SUDO_USER}/.vimrc"
+fi
+
+export PROMPT="%m:%1~%# "
+
+# I found this about adding cabal's bin directory to PATH - it only adds it if it is required
+# what to add to path
+NPATH="$HOME/.cabal/bin"
+
+# add it only if required
+case ":${PATH}:" in
+  *:${NPATH}:*) ;;
+    *) PATH=${PATH}:$NPATH ;;
+    esac
+
+# Ruby gems
+PATH=${PATH}:"$HOME/.gem/ruby/1.9.1/bin"
+
+# Bin add to path
+PATH=${PATH}:"$HOME/bin"
+
+# Aliases go here
+alias tmux="TERM=screen-256color-bce tmux"
+
+export PATH
+
+# This is for the algorithms 4 course on coursera
+test -r ~/algs4/bin/config.sh && source ~/algs4/bin/config.sh

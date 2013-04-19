@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# This loads up .Xresources, which has the solarized color scheme in it
+# See https://wiki.archlinux.org/index.php/X_resources#Adding_to_xinitrc
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+exec startkde

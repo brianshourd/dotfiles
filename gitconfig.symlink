@@ -1,0 +1,5 @@
+[user]
+	email = brian.shourd@gmail.com
+	name = Brian Shourd
+[credential]
+	helper = cache --timeout=3600
