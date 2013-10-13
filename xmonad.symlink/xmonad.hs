@@ -16,7 +16,12 @@ main = xmonad $ xfceConfig
 	, borderWidth = 4
 	, layoutHook = avoidStruts $ myLayoutHook
 	, keys = myKeys <+> keys desktopConfig
+    , manageHook = myManageHook
 	}
+
+myManageHook = composeAll
+   [ className =? "net-minecraft-LauncherFrame"  --> doFloat
+   , manageDocks ]
 
 
 myLayoutHook = centered ||| tiled ||| full ||| Grid

@@ -35,6 +35,12 @@ PATH=${PATH}:"$HOME/.gem/ruby/1.9.1/bin"
 # Bin add to path
 PATH=${PATH}:"$HOME/bin"
 
+# For android development sdks
+PATH=${PATH}:"$HOME/Development/adt-bundle-linux-x86-20130917/sdk/platform-tools":"$HOME/Development/adt-bundle-linux-x86-20130917/sdk/tools"
+
+# For Heroku
+PATH=${PATH}:"/usr/local/heroku/bin:"
+
 # Aliases go here
 alias tmux="TERM=screen-256color-bce tmux"
 

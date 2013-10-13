@@ -60,9 +60,13 @@ Bundle 'tristen/vim-sparkup'
     " ^Use for quickly making html files
 Bundle 'eagletmt/ghcmod-vim'
     " ^Used for happy haskell programming in vim
+Bundle 'plasticboy/vim-markdown'
+    " ^Better markdown highlighting
+Bundle 'fholgado/minibufexpl.vim' 
+    " ^BufferExplorer
 
 " vim-scripts repos
-Bundle 'VimRepress'
+" Bundle 'VimRepress'
 Bundle 'python.vim'
 
 " non github repos
@@ -149,6 +153,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+" But for html - 2 spaces
+autocmd FileType html :setlocal sw=2 ts=2 sts=2
 
 " Set the encoding to UTF-8
 set encoding=utf-8
