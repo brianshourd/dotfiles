@@ -1,33 +1,3 @@
-! xscreensaver ---------------------------------------------------------------
-
-!font settings
-xscreensaver.Dialog.headingFont:        -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #EDEDED
-xscreensaver.Dialog.background:         #202020
-xscreensaver.Dialog.topShadowColor:     #202024
-xscreensaver.Dialog.bottomShadowColor:  #202024
-xscreensaver.Dialog.Button.foreground:  #EDEDFF
-xscreensaver.Dialog.Button.background:  #444
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #EDEDFF
-xscreensaver.Dialog.text.background:    #444
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        20
-xscreensaver.Dialog.shadowThickness:    2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #A9B7C4
-xscreensaver.passwd.thermometer.background:  #202020
-xscreensaver.passwd.thermometer.width:       8
-!datestamp format--see the strftime(3) manual page for details
-xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
-
 ! urxvt --------------------------
 # transparency - true or false (default)
 URxvt*transparent: true
@@ -45,66 +15,34 @@ URxvt*shading: 30
 # scrollback buffer lines - 65535 is max on most machines (64 is default)
 URxvt*saveLines: 12000
 
-# font color (default is black)
-URxvt*foreground: White
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
 
-# background color (prior to tinting) (default is white)
-URxvt*background: Black
-
-# Xft (X FreeType) with Bitstream, DejaVu, Liberation, or Terminus fonts:
-#  Fedora/debian packages: libXft/libxft2 
-#  An anti-aliased font setup with Xft looks fantastic; it can be a bit choppy 
-#  on older systems. You can always turn off anti-aliasing (antialias=false) if
-#  your terminal is sluggish. Use only ONE of the Xft pairs below:
-#
-# Xft: Bitstream fonts
-#  Fedora/debian packages: bitstream-vera-sans-mono-fonts/ttf-bitstream-vera 
-#URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12:antialias=true:hinting=true
-#URxvt*boldFont: xft:Bitstream Vera Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
-#
-# Xft: DejaVu fonts
-#  Fedora/debian packages: dejavu-sans-mono-fonts/ttf-dejavu 
-#URxvt*font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
-#URxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
-#
-# Xft: Liberation fonts
-#  Fedora/debian packages: liberation-mono-fonts/ttf-liberation
-URxvt*font: xft:Liberation Mono:pixelsize=13:antialias=true:hinting=true
-URxvt*boldFont: xft:Liberation Mono:bold:pixelsize=13:antialias=true:hinting=true
-#
-# Xft: Terminus fonts
-#  Fedora/debian packages: terminus-fonts/xfonts-terminus
-#URxvt*font: xft:terminus:pixelsize=15
-#URxvt*boldFont: xft:terminus:bold:pixelsize=15
-
-# Traditional fonts - a more traditional font setup in lieu of xft
-#URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
-#URxvt*boldFont:-*-courier-bold-r-normal-*-14-*-*-*-*-*-iso8859-1
-
-# Replace blue folder colors with a lighter shade for clarity. To
-#  set colored folders and files within urxvt, xterm, and aterm, add
-#  the following line to your ~/.bashrc ($HOME/.bashrc) file under
-#  the heading "# User specific aliases and functions":
-#   alias ls="ls -h --color=auto"
-URxvt*color4: RoyalBlue
-URxvt*color12: RoyalBlue
-
-# scrollbar - true (default) or false
-URxvt*scrollBar: false
-
-# scrollbar position - left=false (default) or right=true
-URxvt*scrollBar_right: false
-
-# scrollbar style - rxvt (default), plain, next, or xterm
-URxvt*scrollstyle: rxvt
-
-# Stuff for URxvt from https://github.com/muennich/urxvt-perls
-# Makes paste work
-URxvt.perl-lib: /home/brian/.urxvt/perl/
-URxvt.perl-ext-common: ...,clipboard
-URxvt.keysym.A-c:   perl:clipboard:copy
-URxvt.keysym.A-v:   perl:clipboard:paste
-URxvt.keysym.A-C-v: perl:clipboard:paste_escaped
-URxvt.clipboard.copycmd:  xclip -i -selection clipboard
-URxvt.clipboard.pastecmd: xclip -o -selection clipboard
-
+URxvt*.background:   #151515
+URxvt*.foreground:   #d0d0d0
+URxvt*.cursorColor:  #d0d0d0
+URxvt*.color0:       #151515
+URxvt*.color1:       #ac4142
+URxvt*.color2:       #90a959
+URxvt*.color3:       #f4bf75
+URxvt*.color4:       #6a9fb5
+URxvt*.color5:       #aa759f
+URxvt*.color6:       #75b5aa
+URxvt*.color7:       #d0d0d0
+URxvt*.color8:       #505050
+URxvt*.color9:       #d28445
+URxvt*.color10:      #202020
+URxvt*.color11:      #303030
+URxvt*.color12:      #b0b0b0
+URxvt*.color13:      #e0e0e0
+URxvt*.color14:      #8f5536
+URxvt*.color15:      #f5f5f5
+! URxvt*.font:             xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=12:medium:roman:antialias=true
+! URxvt*.boldFont:	        xft:DejaVu\ Sans\ Mono\ Bold\ for\ Powerline:size=12:medium:bold:roman:antialias=true
+! URxvt*.italicFont:       xft:DejaVu\ Sans\ Mono\ Oblique \for\ Powerline:size=12:medium:italic:roman:antialias=true
+! URxvt*.boldItalicFont:	xft:DejaVu\ Sans\ Mono\ Bold\ Oblique\ for\ Powerline:size=12:medium:bold:italic:roman:antialias=true
+URxvt*.font:             xft:Inconsolata\ for\ Powerline:size=12:medium:roman:antialias=true
+URxvt*.boldFont:	        xft:Inconsolata\ for\ Powerline:size=12:medium:bold:roman:antialias=true
+URxvt*.italicFont:       xft:Inconsolata\ for\ Powerline:size=12:medium:italic:roman:antialias=true
+URxvt*.boldItalicFont:	xft:Inconsolata\ for\ Powerline:size=12:medium:bold:italic:roman:antialias=true
+URxvt*.scrollBar:    false

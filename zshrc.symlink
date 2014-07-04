@@ -5,46 +5,25 @@ SAVEHIST=1000
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/brian/.zshrc'
+bindkey -M vicmd '?' history-incremental-search-backward
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# Something I found online about having sudo use the user's vim config
-if [ -n "${SUDO_USER}" -a -d "/home/${SUDO_USER}/.vim" ]; then
-    alias vim="/usr/bin/vim --cmd \"set runtimepath+=/home/${SUDO_USER}/.vim\" -u /home/${SUDO_USER}/.vimrc"
+# autoload -U promptinit
+# promptinit
+# export PROMPT="%m:%1~%# "
+# export PROMPT="%K{blue}%n@%m%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k "
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    # This one is blue
+    export PROMPT="%F{blue}%B%K{blue}█▓▒░%F{white}%K{blue}%B%~/%b%F{blue}%K{black}█▓▒░%F{white}%K{black}%B <Remote>
+    %{%}%K{black}%F{white}%B%#%b%f%k "
+else
+    # This one is green
+    export PROMPT="%F{green}%B%K{green}█▓▒░%F{white}%K{green}%B%~/%b%F{green}%K{black}█▓▒░%F{white}%K{black}%B
+    %{%}%K{black}%F{white}%B%#%b%f%k "
 fi
 
-export PROMPT="%m:%1~%# "
+alias win='ssh BShourd@10.0.2.2'
 
-# I found this about adding cabal's bin directory to PATH - it only adds it if it is required
-# what to add to path
-NPATH="$HOME/.cabal/bin"
-
-# add it only if required
-case ":${PATH}:" in
-  *:${NPATH}:*) ;;
-    *) PATH=${PATH}:$NPATH ;;
-    esac
-
-# Ruby gems
-PATH=${PATH}:"$HOME/.gem/ruby/1.9.1/bin"
-
-# Bin add to path
+# add ~/bin to path
 PATH=${PATH}:"$HOME/bin"
 
-# For android development sdks
-PATH=${PATH}:"$HOME/Development/adt-bundle-linux-x86-20130917/sdk/platform-tools":"$HOME/Development/adt-bundle-linux-x86-20130917/sdk/tools"
-
-# For Heroku
-PATH=${PATH}:"/usr/local/heroku/bin:"
-
-# Aliases go here
-alias tmux="TERM=screen-256color-bce tmux"
-
 export PATH
-
-# This is for the algorithms 4 course on coursera
-test -r ~/algs4/bin/config.sh && source ~/algs4/bin/config.sh

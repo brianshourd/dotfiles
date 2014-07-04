@@ -9,13 +9,13 @@ filetype plugin on
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-filetype indent on
-let g:tex_flavor='latex'
+" set grepprg=grep\ -nH\ $*
+" filetype indent on
+" let g:tex_flavor='latex'
 
 " This part is so that vim-latex uses pdf by default
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats = 'pdf, aux'
+" let g:Tex_DefaultTargetFormat = 'pdf'
+" let g:Tex_MultipleCompileFormats = 'pdf, aux'
 " =================================
 " End vim-latex stuff
 " =================================
@@ -27,59 +27,81 @@ let g:Tex_MultipleCompileFormats = 'pdf, aux'
 " set nocompatible             " Done below
 " filetype off                   " required! (no longer?)
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+" required!
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles here:
+" My Plugins here:
 
 " original repos on github
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'vim-scripts/sudo.vim'
+" Plugin 'altercation/vim-colors-solarized.git'
+" Plugin 'vim-scripts/sudo.vim'
     " ^Allows sudo usage
-Bundle 'vim-scripts/haskell.vim' 
+" Plugin 'vim-scripts/haskell.vim'
     " ^Syntax highlighting
-Bundle 'Shougo/neocomplcache.git'
+Plugin 'Shougo/neocomplcache.git'
     " ^Autocompletion - really awesome
-Bundle 'Shougo/vimproc'
+" Plugin 'Shougo/vimproc'
     " ^Required by ghcmod-vim
-Bundle 'ujihisa/neco-ghc' 
+" Plugin 'ujihisa/neco-ghc'
     " ^Completion with NeoComplCache for haskell - requires ghc-mod
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
     " ^Tags, using lushtags for haskell - requires lushtags
-Bundle 'Lokaltog/vim-easymotion'
-    " ^Use \\w and \\b to move about super fast
-Bundle 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+    " ^Use \\w and \\b to move about super fast " Plugin 'tpope/vim-fugitive'
     " ^Use git within vim
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
     " ^Use to change surrounding brackets/etc.
-Bundle 'tristen/vim-sparkup'
+" Plugin 'tristen/vim-sparkup'
     " ^Use for quickly making html files
-Bundle 'eagletmt/ghcmod-vim'
+" Plugin 'eagletmt/ghcmod-vim'
     " ^Used for happy haskell programming in vim
-Bundle 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
     " ^Better markdown highlighting
-Bundle 'fholgado/minibufexpl.vim' 
+Plugin 'fholgado/minibufexpl.vim'
     " ^BufferExplorer
+Plugin 'kien/ctrlp.vim'
+    " ^Control-P finder helper
+Plugin 'bronson/vim-trailing-whitespace'
+    " ^Highlight trailing whitespace
+Plugin 'scrooloose/nerdtree'
+    " ^NERD Tree
+Plugin 'ludovicchabant/vim-lawrencium'
+    " ^Lawrencium Hg-plugin
+Plugin 'bling/vim-airline'
+    " ^Airline statusbar
+Plugin 'chriskempson/base16-vim'
+    " ^Base16 color scheme
+" Plugin 'edkolev/tmuxline.vim'
+" Plugin 'altercation/vim-colors-solarized'
 
 " vim-scripts repos
-" Bundle 'VimRepress'
-Bundle 'python.vim'
+" Plugin 'VimRepress'
+" Plugin 'python.vim'
+" Plugin 'taglist.vim'
+    " ^See taglists
 
 " non github repos
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+" Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused
+" plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line
 " =============================
 " End Vundle config
 " ==============================
@@ -98,6 +120,21 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
+
+if has("gui_running")
+  function! ToggleGUICruft()
+    if &guioptions=='i'
+      exec('set guioptions=mTr')
+    else
+      exec('set guioptions=i')
+    endif
+  endfunction
+  map <F11> <Esc>:call ToggleGUICruft()<cr>
+  set guioptions=i
+  set gfn=Inconsolata\ for\ Powerline\ Medium 12
+endif
+
+
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -133,7 +170,7 @@ endif " has("autocmd")
 " My very own commands
 " ============================
 
-set directory^=$HOME/.vim_swap//   "put all swap files together in one place
+set directory^=$HOME/vim_swap//   "put all swap files together in one place
 
 " Lots of these are from
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
@@ -240,35 +277,44 @@ set display=lastline
 " colorscheme inkpot
 syntax enable
 " colorscheme solarized
-" set background=dark
-colorscheme slate
+" colorscheme slate
+" let base16colorspace=256
+set t_Co=256
+set background=dark
+colorscheme base16-default
+let g:airline_powerline_fonts = 1
 
 " Display line numbers relative to the current line
 set relativenumber
-
-" ==== MultiMarkdown Usage ====
-" Map \mmd to compiling the file using multimarkdown in batch mode to html
-nnoremap <leader>mmd :!multimarkdown<space>-b<space>%<cr><cr>
-
-" ==== VimWiki Commands ======
-" This sets my wikis. Note that I only have one wiki, and I want it to be in
-" my Dropbox folder (so it can sync with Android)
-let g:vimwiki_list=[{'path': '~/Dropbox/wiki', 'path_html': '~/Dropbox/wiki/html'}]
-
-" ==== iSSH stuff ===="
-" First, this let's me change windows in vim without C-w
-nnoremap :ww :wincmd w<cr>
 
 " ===== NeoComplCache Stuff =====
 " Enable
 let g:neocomplcache_enable_at_startup = 1
 
 "===== TagBar stuff =======
-" Enable with F8
-nmap <C-W>t :TagbarToggle<CR>
+" toggle with \tb
+let g:tagbar_left = 1
+nmap <leader>tb :TagbarToggle<CR>
 
-" Who knows
-set t_Co=256
+"===== NerdTree stuff =====
+" Toggle with \nt
+map <leader>nt :NERDTreeToggle<CR>
+" Automatically start with it on
+" autocmd vimenter * NERDTree
+" Put it on the right
+let g:NERDTreeWinPos="right"
+
+"===== Ctrl-P stuff =======
+" Enable caching
+let g:ctrlp_use_caching = 1
+" Don't clear the cache on exit
+let g:ctrlp_clear_cache_on_exit = 0
+" Set cache directory
+let g:ctrlp_cache_dir = $HOME.'/vim_cache/ctrlp'
+
+"====== Taglist stuff =====
+" Toggle with \tl
+" map <leader>tl :TlistToggle<CR>
 
 " ===========================
 " End my commands

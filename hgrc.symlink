@@ -1,0 +1,20 @@
+[ui]
+username = Brian Shourd <brian.shourd@gmail.com>
+
+[extensions]
+#this turns on the queue extension, which should be
+mq =
+transplant =
+hgext.fetch =
+
+[diff]
+git = 1
+
+[defaults]
+#these will allow mq to work correctly with files, without messing up your reviews
+qimport = --git
+qnew = --git
+qrefresh = --git
+
+[hooks]
+preoutgoing = bash -c 'read -p "Really push to $HG_URL? " -n 4 RESP ; [ "$RESP" == "yes" ]'
