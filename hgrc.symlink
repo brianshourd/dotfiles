@@ -1,11 +1,21 @@
-[ui]
-username = Brian Shourd <brian.shourd@gmail.com>
+[web]
+cacerts=
 
 [extensions]
 #this turns on the queue extension, which should be
 mq =
+#this saves you from keeping your password in this file.
+mercurial_keyring =
+#other userful extensions
 transplant =
 hgext.fetch =
+# For external diffs
+hgext.extdiff =
+# For git
+hgext.bookmarks =
+hggit =
+# For crecord
+crecord = /home/brian/src/hgcrecord/
 
 [diff]
 git = 1
@@ -18,3 +28,6 @@ qrefresh = --git
 
 [hooks]
 preoutgoing = bash -c 'read -p "Really push to $HG_URL? " -n 4 RESP ; [ "$RESP" == "yes" ]'
+
+[alias]
+qs = qseries -v

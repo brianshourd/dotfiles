@@ -3,9 +3,9 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
-bindkey -v
+# bindkey -v
 # End of lines configured by zsh-newuser-install
-bindkey -M vicmd '?' history-incremental-search-backward
+# bindkey -M vicmd '?' history-incremental-search-backward
 
 # autoload -U promptinit
 # promptinit
@@ -21,9 +21,19 @@ else
     %{%}%K{black}%F{white}%B%#%b%f%k "
 fi
 
-alias win='ssh BShourd@10.0.2.2'
+# I should change my prompt to something that tells me:
+# 1. Directory
+# 2. Remote or local
+# 3. If in an hg repo, top applied patch
+
+# Put aliases (and really, whatever else) in ~/.zshrc.alias
+if [ -f "$HOME/.zshrc.alias" ]; then
+    source "$HOME/.zshrc.alias"
+else
+    print "Error: $HOME/.zshrc.alias not found."
+fi
 
 # add ~/bin to path
-PATH=${PATH}:"$HOME/bin"
+PATH=${PATH}:"$HOME/bin":"$HOME/bin/temp":"$HOME/bin/js":"$HOME/bin/linuxDevScripts"
 
 export PATH
