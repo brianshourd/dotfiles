@@ -31,3 +31,5 @@ preoutgoing = bash -c 'read -p "Really push to $HG_URL? " -n 4 RESP ; [ "$RESP" 
 
 [alias]
 qs = qseries -v
+bl = annotate -udn
+lb = log -l 5 -b .
