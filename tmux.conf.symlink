@@ -1,23 +1,80 @@
 #tmux configuration
 set-option -g prefix C-d
 
-# Set status bar
-set -g status-bg black
+# Here is a status bar thing I found on drbunsen.org
+set -g status-left-length 52
+set -g status-right-length 451
 set -g status-fg white
-set -g status-left ‘#[fg=green]#H’
+set -g status-bg colour234
+set -g window-status-activity-attr bold
+set -g pane-border-fg grey
+set -g pane-active-border-fg blue
+set -g message-fg colour16
+set -g message-bg colour221
+set -g message-attr bold
+set -g status-left '#[fg=colour235,bg=colour252,bold]  #S #[fg=colour252,bg=colour238,nobold]#[fg=colour245,bg=colour238,bold] #(whoami) #[fg=colour238,bg=colour234,nobold]'
+set -g window-status-format "#[fg=white,bg=colour234] #I #W "
+set -g window-status-current-format "#[fg=colour234,bg=colour39]#[fg=colour25,bg=colour39,noreverse,bold] #I  #W #[fg=colour39,bg=colour234,nobold]"
+
+# Set status bar (old version)
+#set -g status-bg black
+#set -g status-fg white
+#set -g status-left ‘#[fg=green]#H’
+# Highlight active window
+#set-window-option -g window-status-current-bg blue
 
 # Enable mouse scrolling
 setw -g mode-mouse on
-
-# Highlight active window
-set-window-option -g window-status-current-bg blue
 
 # Set window notifications
 setw -g monitor-activity on
 set -g visual-activity on
 
+# Vim mode!
+setw -g mode-keys vi
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-pipe 'xclip -in -selection clipboard'
+bind-key Escape copy-mode
+
 # Change bindings for splitting windows into panes
 unbind %
-bind | split-window -h
-bind - split-window -v
+bind-key | split-window -h
+bind-key - split-window -v
 
+# Move left and right in windows
+bind-key -n M-p previous-window
+bind-key -n M-n next-window
+
+# Swap windows left and right
+bind-key P swap-window -t -1
+bind-key N swap-window -t +1
+bind-key -n M-P swap-window -t -1
+bind-key -n M-N swap-window -t +1
+
+# Cycle panes forward and backward
+bind-key k select-pane -t :.-
+bind-key j select-pane -t :.+
+bind-key -n M-k select-pane -t :.-
+bind-key -n M-j select-pane -t :.+
+
+# Swap panes forward and backward
+bind-key K swap-pane -U
+bind-key J swap-pane -D
+bind-key -n M-K swap-pane -U
+bind-key -n M-J swap-pane -D
+
+# Enable "workspaces"-like functionality
+bind-key -n M-1 attach-session -t 1 -d
+bind-key -n M-2 attach-session -t 2 -d
+bind-key -n M-3 attach-session -t 3 -d
+bind-key -n M-4 attach-session -t 4 -d
+bind-key -n M-5 attach-session -t 5 -d
+bind-key -n M-6 attach-session -t 6 -d
+bind-key -n M-7 attach-session -t 7 -d
+bind-key -n M-8 attach-session -t 8 -d
+bind-key -n M-9 attach-session -t 9 -d
+bind-key -n M-0 attach-session -t 0 -d
+
+# Reload configuration
+unbind r
+bind-key r source-file ${HOME}/.tmux.conf \; display-message "source-file reloaded"

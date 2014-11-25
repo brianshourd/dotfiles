@@ -10,7 +10,8 @@ import Padding
 import qualified Data.Map as M
 
 main = xmonad $ defaultConfig
-	{ focusedBorderColor = "#90A959"
+	{ modMask = mod4Mask
+    , focusedBorderColor = "#90A959"
 	, normalBorderColor = "#151515"
 	, borderWidth = 4
 	, layoutHook = avoidStruts $ myLayoutHook

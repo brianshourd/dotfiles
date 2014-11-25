@@ -36,4 +36,8 @@ fi
 # add ~/bin to path, ~/.gem/ruby/2.1.0/bin
 PATH=${PATH}:"$HOME/bin":"$HOME/bin/temp":"$HOME/bin/js":"$HOME/bin/linuxDevScripts":"$HOME/.gem/ruby/2.1.0/bin"
 
+# Tmuxifier
+PATH=${PATH}:"$HOME/.tmuxifier/bin"
+eval "$($HOME/.tmuxifier/bin/tmuxifier init -)"
+
 export PATH
