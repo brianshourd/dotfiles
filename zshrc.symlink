@@ -27,3 +27,7 @@ alias win='ssh BShourd@10.0.2.2'
 PATH=${PATH}:"$HOME/bin"
 
 export PATH
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
