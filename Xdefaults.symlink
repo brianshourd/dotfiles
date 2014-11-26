@@ -41,8 +41,17 @@ URxvt*.color15:      #f5f5f5
 ! URxvt*.boldFont:	        xft:DejaVu\ Sans\ Mono\ Bold\ for\ Powerline:size=12:medium:bold:roman:antialias=true
 ! URxvt*.italicFont:       xft:DejaVu\ Sans\ Mono\ Oblique \for\ Powerline:size=12:medium:italic:roman:antialias=true
 ! URxvt*.boldItalicFont:	xft:DejaVu\ Sans\ Mono\ Bold\ Oblique\ for\ Powerline:size=12:medium:bold:italic:roman:antialias=true
-URxvt*.font:             xft:Inconsolata\ for\ Powerline:size=11:medium:roman:antialias=true
-URxvt*.boldFont:	        xft:Inconsolata\ for\ Powerline:size=11:medium:bold:roman:antialias=true
-URxvt*.italicFont:       xft:Inconsolata\ for\ Powerline:size=11:medium:italic:roman:antialias=true
-URxvt*.boldItalicFont:	xft:Inconsolata\ for\ Powerline:size=11:medium:bold:italic:roman:antialias=true
+URxvt*.font:             xft:Inconsolata\ for\ Powerline:size=11:medium:roman:antialias=true, \
+                         xft:Monospace, \
+                         xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=11:medium:roman:antialias=true, \
+                         xft:unifont:style=Regular
+URxvt*.boldFont:	     xft:Inconsolata\ for\ Powerline:size=11:medium:bold:roman:antialias=true, \
+                         xft:DejaVu\ Sans\ Mono\ Bold\ for\ Powerline:size=11:medium:bold:roman:antialias=true, \
+                         xft:unifont:style=Regular
+URxvt*.italicFont:       xft:Inconsolata\ for\ Powerline:size=11:medium:italic:roman:antialias=true, \
+                         xft:DejaVu\ Sans\ Mono\ Oblique\ for\ Powerline:size=11:medium:italic:roman:antialias=true, \
+                         xft:unifont:style=Regular
+URxvt*.boldItalicFont:	 xft:Inconsolata\ for\ Powerline:size=11:medium:bold:italic:roman:antialias=true, \
+                         xft:DejaVu\ Sans\ Mono\ Bold\ Oblique\ for\ Powerline:size=11:medium:bold:italic:roman:antialias=true, \
+                         xft:unifont:style=Regular
 URxvt*.scrollBar:    false

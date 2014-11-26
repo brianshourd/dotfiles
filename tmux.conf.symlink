@@ -64,16 +64,16 @@ bind-key -n M-K swap-pane -U
 bind-key -n M-J swap-pane -D
 
 # Enable "workspaces"-like functionality
-bind-key -n M-1 attach-session -t 1 -d
-bind-key -n M-2 attach-session -t 2 -d
-bind-key -n M-3 attach-session -t 3 -d
-bind-key -n M-4 attach-session -t 4 -d
-bind-key -n M-5 attach-session -t 5 -d
-bind-key -n M-6 attach-session -t 6 -d
-bind-key -n M-7 attach-session -t 7 -d
-bind-key -n M-8 attach-session -t 8 -d
-bind-key -n M-9 attach-session -t 9 -d
-bind-key -n M-0 attach-session -t 0 -d
+bind-key -n M-1 attach-session -t 1
+bind-key -n M-2 attach-session -t 2
+bind-key -n M-3 attach-session -t 3
+bind-key -n M-4 attach-session -t 4
+bind-key -n M-5 attach-session -t 5
+bind-key -n M-6 attach-session -t 6
+bind-key -n M-7 attach-session -t 7
+bind-key -n M-8 attach-session -t 8
+bind-key -n M-9 attach-session -t 9
+bind-key -n M-0 attach-session -t 0
 
 # Reload configuration
 unbind r
