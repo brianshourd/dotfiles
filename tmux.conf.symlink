@@ -63,6 +63,9 @@ bind-key J swap-pane -D
 bind-key -n M-K swap-pane -U
 bind-key -n M-J swap-pane -D
 
+# Switch layouts without prefix
+bind-key -n M-Space next-layout
+
 # Enable "workspaces"-like functionality
 bind-key -n M-1 attach-session -t 1
 bind-key -n M-2 attach-session -t 2

@@ -3,28 +3,14 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
-# bindkey -v
+bindkey -v
 # End of lines configured by zsh-newuser-install
 # bindkey -M vicmd '?' history-incremental-search-backward
 
-# autoload -U promptinit
-# promptinit
-# export PROMPT="%m:%1~%# "
-# export PROMPT="%K{blue}%n@%m%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k "
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    # This one is blue
-    export PROMPT="%F{blue}%B%K{blue}█▓▒░%F{white}%K{blue}%B%~/%b%F{blue}%K{black}█▓▒░%F{white}%K{black}%B <Remote>
-    %{%}%K{black}%F{white}%B%#%b%f%k "
-else
-    # This one is green
-    export PROMPT="%F{green}%B%K{green}█▓▒░%F{white}%K{green}%B%~/%b%F{green}%K{black}█▓▒░%F{white}%K{black}%B
-    %{%}%K{black}%F{white}%B%#%b%f%k "
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# I should change my prompt to something that tells me:
-# 1. Directory
-# 2. Remote or local
-# 3. If in an hg repo, top applied patch
 
 # Put aliases (and really, whatever else) in ~/.zshrc.alias
 if [ -f "$HOME/.zshrc.alias" ]; then
@@ -33,11 +19,13 @@ else
     print "Error: $HOME/.zshrc.alias not found."
 fi
 
+# Tmuxifier, if it is installed
+if [ -f "$HOME/.tmuxifier/bin/tmuxifier" ]; then
+    PATH=${PATH}:"$HOME/.tmuxifier/bin"
+    eval "$($HOME/.tmuxifier/bin/tmuxifier init -)"
+fi
+
 # add ~/bin to path, ~/.gem/ruby/2.1.0/bin
 PATH=${PATH}:"$HOME/bin":"$HOME/bin/temp":"$HOME/bin/js":"$HOME/bin/linuxDevScripts":"$HOME/.gem/ruby/2.1.0/bin"
-
-# Tmuxifier
-PATH=${PATH}:"$HOME/.tmuxifier/bin"
-eval "$($HOME/.tmuxifier/bin/tmuxifier init -)"
 
 export PATH
