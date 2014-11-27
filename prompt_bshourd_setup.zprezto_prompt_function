@@ -77,8 +77,10 @@ function prompt_bshourd_setup {
   # Define prompts.
   PROMPT="
 ${_prompt_bshourd_colors[5]}%~%f "'${vcs_info_msg_0_}'"
-⬡  "
+⚔  "
   RPROMPT='${_prompt_bshourd_colors[3]}%n%f at ${_prompt_bshourd_colors[2]}%m%f'
 }
+
+  # Some alternate prompt characters: ⚔  ⬡  ∅
 
 prompt_bshourd_setup "$@"

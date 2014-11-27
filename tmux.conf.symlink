@@ -13,6 +13,7 @@ set -g message-fg colour234
 set -g message-bg colour173
 set -g message-attr bold
 set -g status-left '#[fg=colour234,bg=colour252,bold] ★  #S #[fg=colour252,bg=colour236,nobold]#[fg=colour252,bg=colour236,bold] #(whoami) #[fg=colour236,bg=colour234,nobold]'
+set -g status-right '#(pwd) #[fg=colour67]%l:%M %p'
 set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour67]#[fg=colour234,bg=colour67,noreverse,bold] #I  #W #[fg=colour67,bg=colour234,nobold]"
 
