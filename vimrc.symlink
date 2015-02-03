@@ -197,7 +197,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 " But for html - 2 spaces
-autocmd FileType html :setlocal sw=2 ts=2 sts=2
+autocmd FileType html,jade,css,scss :setlocal sw=2 ts=2 sts=2
 
 " Set the encoding to UTF-8
 set encoding=utf-8
@@ -303,7 +303,7 @@ let g:Omnisharp_start_server = 0
 "let g:OmniSharp_host = "http://localhost:2000"
 
 "Set the type lookup function to use the preview window instead of the status line
-let g:OmniSharp_typeLookupInPreview = 1
+let g:OmniSharp_typeLookupInPreview = 0
 
 "Timeout in seconds to wait for a response from the server
 let g:OmniSharp_timeout = 3
@@ -365,9 +365,9 @@ nnoremap <leader>dc :OmniSharpDocumentation<cr>
 "set cmdheight=2
 
 " Contextual code actions (requires CtrlP)
-nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
+"nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
 " Run code actions with text selected in visual mode to extract method
-vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
+"vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
 
 " rename with dialog
 "nnoremap <leader>nm :OmniSharpRename<cr>
@@ -414,6 +414,8 @@ let g:ycm_auto_start_csharp_server = 1
 let g:ycm_auto_stop_csharp_server = 0
 " Show detailed completion context
 let g:ycm_add_preview_to_completeopt = 1
+" Don't show diagnostics
+let g:ycm_show_diagnostics_ui = 0
 
 "===== Custom Functions ====
 " From http://stackoverflow.com/a/7321131
