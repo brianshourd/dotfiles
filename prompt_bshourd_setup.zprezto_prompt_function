@@ -14,9 +14,9 @@ function prompt_bshourd_precmd {
 
   vcs_info 'prompt'
 
-  if (( $+functions[python-info] )); then
-    python-info
-  fi
+#  if (( $+functions[python-info] )); then
+#    python-info
+#  fi
 }
 
 function prompt_bshourd_setup {
@@ -63,7 +63,8 @@ function prompt_bshourd_setup {
   local staged_format="${_prompt_bshourd_colors[5]}●%f"
 
   # Set vcs_info parameters.
-  zstyle ':vcs_info:*' enable bzr git hg svn
+  #zstyle ':vcs_info:*' enable bzr git hg svn
+  zstyle ':vcs_info:*' enable git hg
   zstyle ':vcs_info:*:prompt:*' check-for-changes true
   zstyle ':vcs_info:*:prompt:*' unstagedstr "${unstaged_format}"
   zstyle ':vcs_info:*:prompt:*' stagedstr "${staged_format}"
@@ -72,7 +73,7 @@ function prompt_bshourd_setup {
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
   # Set python-info parameters.
-  zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
+  #zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
   PROMPT="
