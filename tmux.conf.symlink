@@ -1,6 +1,9 @@
 #tmux configuration
 set-option -g prefix C-d
 
+# Set term to 256 color
+set -g default-terminal "screen-256color"
+
 # Here is a status bar thing I found on drbunsen.org
 set -g status-left-length 52
 set -g status-right-length 451
@@ -16,6 +19,12 @@ set -g status-left '#[fg=colour234,bg=colour252,bold] ★  #S #[fg=colour252,bg=
 set -g status-right '#(pwd) #[fg=colour67]%l:%M %p'
 set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour67]#[fg=colour234,bg=colour67,noreverse,bold] #I  #W #[fg=colour67,bg=colour234,nobold]"
+
+# Aggressively resize (smallest window of things that are looking at it)
+setw -g aggressive-resize on
+
+# Don't wait (much) on escapes
+set -sg escape-time 20
 
 # Set status bar (old version)
 #set -g status-bg black
