@@ -34,7 +34,13 @@ set -sg escape-time 20
 #set-window-option -g window-status-current-bg blue
 
 # Enable mouse scrolling
-setw -g mode-mouse on
+set-option -g -q mouse on
+bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+bind-key -t vi-copy WheelUpPane scroll-up
+bind-key -t vi-copy WheelDownPane scroll-down
+# Below worked <2.1
+#setw -g mode-mouse on
 
 # Set window notifications
 setw -g monitor-activity on
