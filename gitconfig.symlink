@@ -1,5 +1,9 @@
 [user]
 	email = brian.shourd@gmail.com
 	name = Brian Shourd
+[alias]
+    lg = log --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(yellow)- %an%C(reset)%C(auto)%d%C(reset)'
+[merge]
+    tool = kdiff3
 [credential]
 	helper = cache --timeout=3600

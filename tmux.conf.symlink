@@ -1,5 +1,7 @@
 #tmux configuration
 set-option -g prefix C-d
+# Send-prefix
+bind-key d send-prefix
 
 # Set term to 256 color
 set -g default-terminal "screen-256color"
@@ -37,8 +39,11 @@ set -sg escape-time 20
 set-option -g -q mouse on
 bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
 bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
-bind-key -t vi-copy WheelUpPane scroll-up
-bind-key -t vi-copy WheelDownPane scroll-down
+bind-key -T copy-mode-vi WheelUpPane send -X scroll-up
+bind-key -T copy-mode-vi WheelDownPane send -X scroll-down
+# Old way
+#bind-key -t vi-copy WheelUpPane scroll-up
+#bind-key -t vi-copy WheelDownPane scroll-down
 # Below worked <2.1
 #setw -g mode-mouse on
 
@@ -48,9 +53,17 @@ set -g visual-activity on
 
 # Vim mode!
 setw -g mode-keys vi
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-pipe 'xclip -in -selection clipboard'
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 bind-key Escape copy-mode
+#bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+# Old way
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-pipe 'xclip -in -selection clipboard'
+
+# paste from clipboard
+#bind C-p run "xclip -o -selection clipboard | tmux load-buffer - ; tmux paste-buffer"
+bind C-p paste-buffer
 
 # Change bindings for splitting windows into panes
 unbind %
@@ -78,6 +91,20 @@ bind-key K swap-pane -U
 bind-key J swap-pane -D
 bind-key -n M-K swap-pane -U
 bind-key -n M-J swap-pane -D
+
+# Quickly make a pane an appropriate number of vim-windows wide
+# Note that this overrides default keybindings to change to a numbered window
+# Which is fine, since I use M-p and M-n
+bind-key 1 resize-pane -t . -x 106
+bind-key 2 resize-pane -t . -x 212
+bind-key 3 resize-pane -t . -x 318
+bind-key 4 resize-pane -t . -x 424
+
+# Quickly make a pane 1/2/3 quarters of a window tall
+bind-key ! resize-pane -t . -y 25
+bind-key @ resize-pane -t . -y 50
+bind-key "#" resize-pane -t . -y 75
+#bind-key '#' resize-pane -t . -x $(($(tmux display-message -t . -p '#{window_height}') * 3 / 4))
 
 # Switch layouts without prefix
 bind-key -n M-Space next-layout

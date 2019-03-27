@@ -1,16 +1,31 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+# History
+export HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+
+# add ~/bin to path
+typeset -U path # Don't add things to PATH that were already there
+PATH=${PATH}:"$HOME/bin"
+export PATH
+
+# use vim as editor
+export VISUAL=nvim
+export EDITOR=$VISUAL
+
+export PAGER=less
+# Allows syntax highlighting in less - requires GNU's syntax-highlight program
+export LESSOPEN="| $HOME/bin/src-hilite-lesspipe.sh %s"
+# -R: used to allow syntax highlighting by outputting raw ANSI color sequences
+# -X: do not clear the screen when exiting less
+export LESS=' -R -X '
+
+# For hh
+export HH_CONFIG=hicolor
+bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
+
 unsetopt beep
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# bindkey -M vicmd '?' history-incremental-search-backward
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+bindkey -M vicmd '?' history-incremental-search-backward
 
 # Put aliases (and really, whatever else) in ~/.zshrc.alias
 if [ -f "$HOME/.zshrc.alias" ]; then
@@ -19,13 +34,16 @@ else
     print "Error: $HOME/.zshrc.alias not found."
 fi
 
-# Tmuxifier, if it is installed
-if [ -f "$HOME/.tmuxifier/bin/tmuxifier" ]; then
-    PATH=${PATH}:"$HOME/.tmuxifier/bin"
-    eval "$($HOME/.tmuxifier/bin/tmuxifier init -)"
+# Set prompt
+if [ -f "$HOME/.zshfunctions/prompt_bshourd_setup" ]; then
+  fpath=(~/.zshfunctions $fpath)
+  autoload -U promptinit
+  promptinit
+  prompt bshourd
+else
+  print "Error: $HOME/.zshfunctions/prompt_bshourd_setup not found"
 fi
 
-# add ~/bin to path, ~/.gem/ruby/2.1.0/bin
-PATH=${PATH}:"$HOME/bin":"$HOME/bin/temp":"$HOME/bin/js":"$HOME/bin/linuxDevScripts":"$HOME/.gem/ruby/2.1.0/bin"
-
-export PATH
+# Set up autocomplete
+autoload -Uz compinit
+compinit

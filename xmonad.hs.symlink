@@ -1,0 +1,35 @@
+import XMonad
+import XMonad.Config.Xfce
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
+import XMonad.Util.CustomKeys
+
+main = xmonad xfceConfig
+    { terminal = "st"
+    , focusedBorderColor = "#90A959"
+    , normalBorderColor = "#151515"
+    , borderWidth = 4
+    , layoutHook = desktopLayoutModifiers $ myLayoutHook
+    , keys = myKeys <+> keys xfceConfig
+    , modMask = mod4Mask
+    }
+
+myLayoutHook = htiled ||| full
+    where
+        htiled = Tall nmaster delta ratio
+        full = spacing 0 $ noBorders Full
+        -- The default number of windows in the master pane
+        nmaster = 1
+        -- Default proportion of screen occupied by master pane
+        ratio = 5/8
+        -- Percent of screen to increment by when resizing panes
+        delta = 5/100
+
+myKeys = customKeys delKeys insKeys
+    where
+        delKeys :: XConfig l -> [(KeyMask, KeySym)]
+        delKeys _ = []
+
+        insKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
+        insKeys XConfig { modMask = modm } =
+            [ ((modm, xK_p), spawn "dmenu_run") ]
