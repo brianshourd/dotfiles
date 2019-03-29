@@ -14,7 +14,7 @@ export EDITOR=$VISUAL
 
 export PAGER=less
 # Allows syntax highlighting in less - requires GNU's syntax-highlight program
-export LESSOPEN="| $HOME/bin/src-hilite-lesspipe.sh %s"
+export LESSOPEN="| /usr/local/bin/source-highlight %s"
 # -R: used to allow syntax highlighting by outputting raw ANSI color sequences
 # -X: do not clear the screen when exiting less
 export LESS=' -R -X '
@@ -47,3 +47,7 @@ fi
 # Set up autocomplete
 autoload -Uz compinit
 compinit
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -6,7 +6,7 @@ Basic install of all dotfiles:
 export DOTFILES_DIR=/path/to/dotfiles
 ln -s $DOTFILES_DIR/gitconfig.symlink $HOME/.gitconfig
 ln -s $DOTFILES_DIR/tmux.conf.symlink $HOME/.tmux.conf
-ln -s $DOTFILES_DIR/zshrc.symlink $HOME/.zshrc.conf
+ln -s $DOTFILES_DIR/zshrc.symlink $HOME/.zshrc
 touch $HOME/.zshrc.alias
 mkdir $HOME/.zshfunctions
 ln -s $DOTFILES_DIR/prompt_bshourd_setup.symlink $HOME/.zshfunctions/prompt_bshourd_setup
@@ -38,8 +38,16 @@ Need `zsh`, `git`, `tmux`, `xmonad`, `st`, and `nvim`, of course.
     zshconfig.
 * Relies on [hstr](https://github.com/dvorka/hstr) (the `hh` command) for
     history binding. Also can easily be commented out.
+* There is some configuration assuming that
+    [nvm](https://github.com/creationix/nvm) is installed to manage node.
 
 ### st
 
 * The font configured is [Hack](https://sourcefoundry.org/hack/), which will
     need to be installed in order to be used, or else choose another font
+
+### xmonad
+
+* There is a keyboard shortcut to launch
+    [dmenu](https://tools.suckless.org/dmenu/), so install that if you think
+    that it will be needed.
