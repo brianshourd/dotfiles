@@ -32,4 +32,6 @@ myKeys = customKeys delKeys insKeys
 
         insKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
         insKeys XConfig { modMask = modm } =
-            [ ((modm, xK_p), spawn "dmenu_run") ]
+            [ ((modm              , xK_p), spawn "dmenu_run")
+            , ((modm .|. shiftMask, xK_l), spawn "slock")
+            ]

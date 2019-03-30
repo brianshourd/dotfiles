@@ -25,6 +25,7 @@ bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 
 unsetopt beep
 bindkey -v
+bindkey -v '^?' backward-delete-char
 bindkey -M vicmd '?' history-incremental-search-backward
 
 # Put aliases (and really, whatever else) in ~/.zshrc.alias
