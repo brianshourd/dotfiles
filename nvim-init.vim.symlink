@@ -41,6 +41,10 @@ Plug 'udalov/kotlin-vim'
     " ^Kotlin formatting/etc
 Plug 'leafgarland/typescript-vim'
     " ^TS formatting/etc
+Plug 'pangloss/vim-javascript'
+    " ^Recommended javascript syntax highlighting
+Plug 'mxw/vim-jsx'
+    " ^JSX syntax highlighting, requires above for js highlighting
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -103,7 +107,9 @@ autocmd FileType html,jade,css,scss :setlocal sw=2 ts=2 sts=2
 " But for bash - 2 spaces
 autocmd FileType bash,sh,zsh :setlocal sw=2 ts=2 sts=2
 " For typescript - 2 spaces
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType typescript :setlocal sw=2 ts=2 sts=2
+" But for javasctript and jsx - 2 spaces
+autocmd FileType js,jsx,javascript.jsx,javascript :setlocal sw=2 ts=2 sts=2
 
 " Set the encoding to UTF-8
 set encoding=utf-8
