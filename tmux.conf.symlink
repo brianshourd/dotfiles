@@ -95,10 +95,10 @@ bind-key -n M-J swap-pane -D
 # Quickly make a pane an appropriate number of vim-windows wide
 # Note that this overrides default keybindings to change to a numbered window
 # Which is fine, since I use M-p and M-n
-bind-key 1 resize-pane -t . -x 106
-bind-key 2 resize-pane -t . -x 212
-bind-key 3 resize-pane -t . -x 318
-bind-key 4 resize-pane -t . -x 424
+bind-key 1 resize-pane -t . -x 86
+bind-key 2 resize-pane -t . -x 172
+bind-key 3 resize-pane -t . -x 258
+bind-key 4 resize-pane -t . -x 344
 
 # Quickly make a pane 1/2/3 quarters of a window tall
 bind-key ! resize-pane -t . -y 25
