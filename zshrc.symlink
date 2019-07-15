@@ -2,6 +2,7 @@
 export HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+setopt appendhistory
 
 # add ~/bin to path
 typeset -U path # Don't add things to PATH that were already there
