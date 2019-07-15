@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Config.Xfce
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
+import XMonad.ManageHook
 import XMonad.Util.CustomKeys
 
 main = xmonad xfceConfig
@@ -10,9 +11,13 @@ main = xmonad xfceConfig
     , normalBorderColor = "#151515"
     , borderWidth = 4
     , layoutHook = desktopLayoutModifiers $ myLayoutHook
+    , manageHook = myManageHook <+> manageHook xfceConfig
     , keys = myKeys <+> keys xfceConfig
     , modMask = mod4Mask
     }
+
+myManageHook = composeAll
+    [ className =? "zoom" --> doFloat ]
 
 myLayoutHook = htiled ||| full
     where
