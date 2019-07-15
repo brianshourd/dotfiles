@@ -9,14 +9,12 @@ set -g default-terminal "screen-256color"
 # Here is a status bar thing I found on drbunsen.org
 set -g status-left-length 52
 set -g status-right-length 451
-set -g status-fg white
-set -g status-bg colour234
-set -g window-status-activity-attr bold
-set -g pane-border-fg colour236
-set -g pane-active-border-fg colour131
-set -g message-fg colour234
-set -g message-bg colour173
-set -g message-attr bold
+set -g status-style fg=white,bg=colour234
+set -g window-status-activity-style bold
+set -g pane-border-style fg=colour236
+set -g pane-active-border-style fg=colour131
+set -g message-style fg=colour234,bg=colour173
+set -g message-style bold
 set -g status-left '#[fg=colour234,bg=colour252,bold] #S #[fg=colour252,bg=colour236,nobold]#[fg=colour252,bg=colour236,bold] #H #[fg=colour236,bg=colour234,nobold]'
 set -g status-right '#(pwd) #[fg=colour67]%H:%M'
 set -g window-status-format "#[fg=white,bg=colour234] #I #W "
